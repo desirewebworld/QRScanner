@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/profileParentLyt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/profileRefreshLyt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:scrollbars="none">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:id="@+id/topView"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_100"
+                        android:background="@color/colorPrimary"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_20"
+                        android:layout_marginTop="@dimen/dp_50"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="@dimen/img_big"
+                                android:layout_height="@dimen/img_big"
+                                android:layout_marginBottom="@dimen/dp_40"
+                                app:cardCornerRadius="@dimen/dp_10"
+                                app:cardElevation="0dp"
+                                app:strokeColor="@color/colorPrimary"
+                                app:strokeWidth="1dp">
+
+                                <ImageView
+                                    android:id="@+id/userProfileIv"
+                                    android:layout_width="@dimen/img_big"
+                                    android:layout_height="@dimen/img_big"
+                                    android:contentDescription="@string/app_name"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/profile_bg" />
+
+                            </androidx.cardview.widget.CardView>
+
+                            <LinearLayout
+                                android:id="@+id/captureBtn"
+                                android:layout_width="@dimen/dp_60"
+                                android:layout_height="@dimen/dp_60"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:background="@drawable/camera_bg"
+                                android:gravity="center"
+                                app:cardElevation="0dp">
+
+                                <ImageView
+                                    android:layout_width="@dimen/dp_30"
+                                    android:layout_height="@dimen/dp_30"
+                                    android:contentDescription="@string/app_name"
+                                    android:src="@drawable/camera" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_30"
+                            android:hint="@string/label_user_name">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/userNameET"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textPersonName"
+                                android:maxLength="@integer/max_user_name"
+                                android:maxLines="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_30"
+                            android:hint="@string/label_email">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/userEmailET"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="false"
+                                android:inputType="none"
+                                android:maxLength="@integer/max_email"
+                                android:maxLines="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_30"
+                            android:hint="@string/label_mobile">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/userMobileEt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="phone"
+                                android:maxLength="@integer/max_phone"
+                                android:maxLines="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_30"
+                            android:hint="@string/label_gender">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/userGenderEt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLength="@integer/max_phone"
+                                android:maxLines="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_30"
+                            android:hint="@string/label_dob">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/userDOBEt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_30"
+                            android:hint="@string/label_height">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/userHeightEt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="phone"
+                                android:maxLength="@integer/max_phone"
+                                android:maxLines="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_30"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="@integer/max_address"
+                            android:hint="@string/label_address">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/userAddressEt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:imeOptions="actionNext"
+                                android:maxLength="@integer/max_address"
+                                android:maxLines="5"
+                                android:singleLine="false" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_30"
+                            android:hint="@string/label_about"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="@integer/max_about_me">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/userAboutEt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLength="@integer/max_about_me"
+                                android:maxLines="10" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dp_30"
+                            app:cardCornerRadius="@dimen/dp_30">
+
+                            <TextView
+                                android:id="@+id/saveProfileBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorPrimary"
+                                android:gravity="center"
+                                android:padding="@dimen/dp_20"
+                                android:text="@string/btn_save_profile"
+                                android:textColor="@color/colorWhite" />
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                </RelativeLayout>
+            </ScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <LinearLayout
+            android:id="@+id/profileProgressLyt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/dp_50"
+                android:minHeight="@dimen/dp_50" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@string/msg_please_wait"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/sp_20" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="max_user_name">40</integer>
+    <integer name="min_user_name">4</integer>
+
+    <integer name="max_email">50</integer>
+    <integer name="max_address">60</integer>
+    <integer name="min_pass">6</integer>
+    <integer name="max_pass">40</integer>
+
+    <integer name="max_phone">14</integer>
+    <integer name="min_phone">8</integer>
+
+    <integer name="max_about_me">250</integer>
+    <integer name="max_line">5</integer>
+
+    <integer name="max_length_title">50</integer>
+    <integer name="max_length_short_desc">100</integer>
+    <integer name="max_length_long_desc">500</integer>
+</resources>
