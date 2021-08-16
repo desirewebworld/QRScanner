@@ -51,7 +51,7 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_varify_otp"
+                    android:text="@string/label_generate_otp"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/sp_20"
                     android:textStyle="bold" />
@@ -61,16 +61,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_20"
-                    android:hint="@string/label_enter_otp">
+                    android:hint="@string/label_enter_phone">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/otpET"
+                        android:id="@+id/phoneEt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionDone"
                         android:lines="1"
                         android:inputType="number"
-                        android:maxLength="@integer/max_otp"
+                        android:maxLength="@integer/max_phone"
                         android:singleLine="true" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,7 +104,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/forgotPasswordProgressLyt"
+                android:id="@+id/progressBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"

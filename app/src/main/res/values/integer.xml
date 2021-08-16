@@ -5,6 +5,7 @@
 
     <integer name="max_email">50</integer>
     <integer name="max_address">60</integer>
+    <integer name="max_otp">6</integer>
     <integer name="min_pass">6</integer>
     <integer name="max_pass">40</integer>
 

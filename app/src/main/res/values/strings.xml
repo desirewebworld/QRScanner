@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QRScanner</string>
+    <string name="app_name">Scan Verify</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -7,7 +7,7 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_password">Password must be >3 characters</string>
     <string name="login_failed">"Login failed"</string>
 
     <string name="action_settings">Settings</string>
@@ -65,7 +65,10 @@
     <string name="label_long_desc">Description</string>
     <string name="label_add_thumbnail">Add Image</string>
     <string name="label_varify_otp">Varify OTP</string>
+    <string name="label_generate_otp">Generate OTP</string>
     <string name="label_enter_otp">Enter OTP</string>
+    <string name="label_otp"> OTP</string>
+    <string name="label_enter_phone">Enter Phone</string>
 
     <string name="btn_register_now">Register Now</string>
     <string name="btn_forgot_pass">Forgot Password?</string>
@@ -186,7 +189,7 @@
 
     <string name="tutorial_title_three">Make your voice</string>
     <string name ="tutorial_desc_three">Share your group or solo recording globally</string>
-    <string name="msg_forgot_password">Please enter your register email id to get the new password on your mail.</string>
+    <string name="msg_forgot_password">Please enter your register phone number to get the new password.</string>
     <string name="msg_otp">Please enter your OTP received on your phone.</string>
     <string name="label_next">Next</string>
     <string name="label_back">Back</string>

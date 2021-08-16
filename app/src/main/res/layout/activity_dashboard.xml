@@ -39,12 +39,7 @@
                     android:visibility="gone"
                     android:selectAllOnFocus="true" />
 
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:visibility="invisible" />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -88,8 +83,12 @@
                         </LinearLayout>
 
 
+
+
+
+
                         <LinearLayout
-                            android:id="@+id/tv_my_booking"
+                            android:id="@+id/tv_scan_history"
                             android:layout_width="match_parent"
                             android:orientation="vertical"
                             android:layout_weight="1"
@@ -110,11 +109,10 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Profile"
+                                android:text="Scan History"
 
                                 />
                         </LinearLayout>
-
 
 
                     </LinearLayout>
@@ -151,9 +149,8 @@
                                 />
                         </LinearLayout>
 
-
                         <LinearLayout
-                            android:id="@+id/tv_scan_history"
+                            android:id="@+id/tv_my_booking"
                             android:layout_width="match_parent"
                             android:orientation="vertical"
                             android:layout_weight="1"
@@ -174,7 +171,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Scan History"
+                                android:text="Profile"
 
                                 />
                         </LinearLayout>
@@ -252,6 +249,29 @@
 
 
 
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_centerInParent="true"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="@dimen/dp_50"
+                    android:minHeight="@dimen/dp_50" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:textSize="@dimen/sp_20"
+                    android:textColor="@color/colorAccent"
+                    android:text="@string/msg_please_wait"/>
             </LinearLayout>
 
         </RelativeLayout>

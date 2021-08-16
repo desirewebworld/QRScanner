@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainActivity = this;
         ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
         start_our_process();
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         if(isNetworkConnected() == false)
         {
             Util.show_sack(findViewById(android.R.id.content).getRootView(), Desire_Constants.INTERNET_NOT_WORKING_MSG);
+
         }
         check_login();
         mainActivity = this;
@@ -110,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
 
             }
-        }, 5000);
+        }, 0000);
     }
 
 
@@ -118,16 +120,16 @@ public class MainActivity extends AppCompatActivity {
     String username, password;
     boolean read_pref()
     {
-        return false;
-//        String str="";
-//        SharedPreferences sharedPreferences=  getSharedPreferences(LoginActivity.LOGIN_PREF_FILE, Context.MODE_PRIVATE);
-//        if(sharedPreferences == null)
-//        {
-//            return false;
-//        }
-//        username = sharedPreferences.getString("email", null);
-//        password = sharedPreferences.getString("password", null);
-        //      return true;
+        //return false;
+        String str="";
+        SharedPreferences sharedPreferences =  getSharedPreferences(Desire_Constants.PREF_FILE_NAME, Context.MODE_PRIVATE);
+        if(sharedPreferences == null)
+        {
+            return false;
+        }
+        username = sharedPreferences.getString("login_mobile", null);
+        password = sharedPreferences.getString("password", null);
+             return true;
     }
     void check_login()
     {
@@ -137,33 +139,49 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            ServerCalls.call_from = 2;
-           // ServerCalls.check_user_login(username,password);
+            if( (username != null) && (password != null) &&
+            (username.equalsIgnoreCase("") == false) && (password.equalsIgnoreCase("") == false))
+            {
+                ServerCalls.call_from = 2;
+                ServerCalls.user_login(username,password);
+            }
+            else
+            {
+                show_login_activity();
+            }
+
         }
     }
 
 
 
 
-    public void error()
+    public void show_error(String message , String code)
     {
+        Util.show_error_msg(this,message,code);
+        ServerCalls.call_from = 0;
+       show_login_activity();
+    }
+
+    private void show_login_activity() {
         final Intent myintent = new Intent(this, LoginActivity.class);
         startActivity(myintent);
         finish();
     }
-    public void success()
-    {
-        UserDetails student = UserDetails.getMsDesireUser();
-        student.setEmail(username);
-        student.setPassword(password);
 
+    public void success(String message)
+    {
+        Util.show_msg(this,message);
+        ServerCalls.call_from = 0;
+        Util.show_msg(this,message);
+       show_dashboard_activity();
+    }
+
+    private void show_dashboard_activity() {
         final Intent myintent = new Intent(this, DashboardActivity.class);
         startActivity(myintent);
         finish();
     }
-
-
-
 
 
 }
