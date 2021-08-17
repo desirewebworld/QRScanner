@@ -374,22 +374,7 @@ public class Util {
     }
 
 
-    public static String get_url(String key)
-    {
-        String url="";
-        switch (key)
-        {
 
-
-            case Desire_Constants.Thought_Development_in_Child:
-            {
-                url = new String(" http://childcuriosity.com/program.php?catid=12");
-                break;
-            }
-
-        }
-        return url;
-    }
     public static void delay( long miliseccond)
     {
 
@@ -406,9 +391,17 @@ public class Util {
         Toast.makeText(activity, "Please Wait ... ", Toast.LENGTH_SHORT).show();
     }
 
-    public static  void show_msg(Activity activity, String msg, String error_code)
+    public static  void show_msg(Activity activity, String msg)
+    {
+        DesireLog.Log(msg);
+
+        Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public static  void show_error_msg(Activity activity, String msg, String error_code)
     {
         String str = "Error Code ("+ error_code + ") "+ msg;
+        DesireLog.Log(str);
         Toast.makeText(activity, str, Toast.LENGTH_SHORT).show();
     }
 

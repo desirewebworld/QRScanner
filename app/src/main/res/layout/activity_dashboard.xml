@@ -150,7 +150,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/tv_my_booking"
+                            android:id="@+id/tv_profile"
                             android:layout_width="match_parent"
                             android:orientation="vertical"
                             android:layout_weight="1"

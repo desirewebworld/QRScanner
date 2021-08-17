@@ -46,6 +46,7 @@
     <string name="label_confirm_password">Confirm Password</string>
 
     <string name="label_user_details">User Details</string>
+    <string name="label_update">Update</string>
     <string name="label_register">Register</string>
     <string name="label_user_name">User Name</string>
     <string name="label_mobile">Mobile</string>

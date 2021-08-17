@@ -7,7 +7,10 @@ import androidx.cardview.widget.CardView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -19,10 +22,7 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,25 +31,38 @@ import com.scanoverify.qrscanner.DashboardActivity;
 import com.scanoverify.qrscanner.ForgetPasswordActivity;
 import com.scanoverify.qrscanner.R;
 import com.scanoverify.qrscanner.RegisterActivity;
-import com.scanoverify.qrscanner.ui.login.LoginViewModel;
-import com.scanoverify.qrscanner.ui.login.LoginViewModelFactory;
+import com.scanoverify.qrscanner.GenerateOTPActivity;
+import com.scanoverify.qrscanner.util.Desire_Constants;
+import com.scanoverify.qrscanner.util.ServerCalls;
+import com.scanoverify.qrscanner.util.Util;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private LoginViewModel loginViewModel;
-
-
+    public static View rootview  = null;
+    LinearLayout progressBar;
+    public static LoginActivity loginActivity = null;
+    String mobile, password;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        loginActivity = this;
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
+          rootview  = findViewById(android.R.id.content).getRootView();
+        if(isNetworkConnected() == false)
+        {
+            Util.show_sack(rootview, Desire_Constants.INTERNET_NOT_WORKING_MSG);
+
+        }
+
 
         final TextInputEditText usernameEditText = findViewById(R.id.phoneEt);
         final TextInputEditText passwordEditText = findViewById(R.id.passEt);
         final CardView loginButton = findViewById(R.id.loginBtn);
         final LinearLayout loadingProgressBar = findViewById(R.id.loginProgressLyt);
+        progressBar = findViewById(R.id.loginProgressLyt);
         final TextView registerBtn = findViewById(R.id.registerBtn);
         AppCompatTextView forgotPassBtn = findViewById(R.id.forgotPassBtn);
         registerBtn.setOnClickListener(this);
@@ -77,7 +90,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (loginResult == null) {
                     return;
                 }
-                loadingProgressBar.setVisibility(View.GONE);
+
                 if (loginResult.getError() != null) {
                     showLoginFailed(loginResult.getError());
                 }
@@ -86,9 +99,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 setResult(Activity.RESULT_OK);
 
+                mobile =  usernameEditText.getText().toString();
+                password=       passwordEditText.getText().toString();
+                show_progress(true);
+                if(check_value())
+                {
+                    ServerCalls.user_login(mobile,password);
+                }
+
                 //Complete and destroy login activity once successful
-                show_dashboard_activity();
-                finish();
+
             }
         });
 
@@ -129,6 +149,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
+
+
+
             }
         });
     }
@@ -143,6 +166,56 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 
+    public void success(String message)
+    {
+        save_pref();
+        show_progress(false);
+
+        Util.show_msg(this,message);
+
+        show_dashboard_activity();
+        finish();
+
+    }
+
+    public void show_error(String message, String error_code) {
+        show_progress(false);
+        Util.show_error_msg(this,message,error_code);
+    }
+    private boolean check_value() {
+
+        // we have to put validation // here
+
+        return true;
+
+    }
+
+    private void show_progress(boolean is_show) {
+
+        if(is_show)
+        {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            progressBar.setVisibility(View.GONE);
+        }
+
+    }
+
+    private void save_pref() {
+        String str="";
+        SharedPreferences sharedPreferences=  getSharedPreferences(Desire_Constants.PREF_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor  editor=sharedPreferences.edit();
+
+        editor.putString("login_mobile",mobile);
+
+
+        editor.putString("password",password);
+
+
+        editor.commit();
+    }
 
     @Override
     public void onClick(View view) {
@@ -151,7 +224,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         {
             case R.id.registerBtn:
             {
-                show_registration_activity();
+                show_otp_activity();
                 break;
             }
             case R.id.forgotPassBtn:
@@ -177,4 +250,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Intent i = new Intent(this, RegisterActivity.class);
         startActivity(i);
     }
+
+    boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+
+
+    private void show_otp_activity() {
+        Intent i = new Intent(this, GenerateOTPActivity.class);
+        startActivity(i);
+    }
+
 }

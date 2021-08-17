@@ -5,9 +5,11 @@ import android.text.TextUtils;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.scanoverify.qrscanner.response.UserRegisterResponse;
 import com.scanoverify.qrscanner.util.Util;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,6 +20,28 @@ import java.util.Map;
 public class UserDetails {
 
     private String id;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = new User(user);
+    }
+
+    public User user ;
+
+
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        if(TextUtils.isEmpty(access_token)== false)
+        this.access_token = new String(access_token);
+    }
+
+    private String access_token;
 
     public String getReward_point() {
         return reward_point;
@@ -178,6 +202,7 @@ public class UserDetails {
         setPan_pic(UserDetails.getPan_pic());
         setQr_pic(UserDetails.getQr_pic());
         setBank_pic(UserDetails.getBank_pic());
+        setAccess_token(UserDetails.getAccess_token());
 
 
     }
@@ -1102,5 +1127,110 @@ public class UserDetails {
     }
 
 
+
+
+    public static class User implements Serializable
+    {
+
+        @SerializedName("user_id")
+        @Expose
+        private String userId;
+        @SerializedName("name")
+        @Expose
+        private String name;
+        @SerializedName("status")
+        @Expose
+        private Integer status;
+        @SerializedName("mobile")
+        @Expose
+        private String mobile;
+        @SerializedName("updated_at")
+        @Expose
+        private String updatedAt;
+        @SerializedName("created_at")
+        @Expose
+        private String createdAt;
+        @SerializedName("id")
+        @Expose
+        private Integer id;
+
+        public User()
+        {
+            
+        }
+
+        public User(User obj)
+        {
+            setUserId(obj.getUserId());
+            setCreatedAt(obj.getCreatedAt());
+            setUpdatedAt(obj.getUpdatedAt());
+            setId(obj.getId());
+            setMobile(obj.getMobile());
+            setName(obj.getName());
+            setStatus(obj.getStatus());
+        }
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            if(!TextUtils.isEmpty(userId))
+            this.userId = new String(userId);
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            if(!TextUtils.isEmpty(name))
+            this.name = new String(name);
+        }
+
+        public Integer getStatus() {
+            return status;
+        }
+
+        public void setStatus(Integer status) {
+
+            this.status = status;
+        }
+
+        public String getMobile() {
+            return mobile;
+        }
+
+        public void setMobile(String mobile) {
+            if(!TextUtils.isEmpty(mobile))
+            this.mobile = new String(mobile);
+        }
+
+        public String getUpdatedAt() {
+            return updatedAt;
+        }
+
+        public void setUpdatedAt(String updatedAt) {
+            if(!TextUtils.isEmpty(updatedAt))
+            this.updatedAt = new String(updatedAt);
+        }
+
+        public String getCreatedAt() {
+            return createdAt;
+        }
+
+        public void setCreatedAt(String createdAt) {
+            if(!TextUtils.isEmpty(createdAt))
+            this.createdAt = new String(createdAt);
+        }
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+    }
 
 }

@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void success(String message)
     {
-        Util.show_msg(this,message);
+
         ServerCalls.call_from = 0;
         Util.show_msg(this,message);
        show_dashboard_activity();

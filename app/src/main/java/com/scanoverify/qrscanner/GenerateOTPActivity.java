@@ -32,7 +32,7 @@ public class GenerateOTPActivity extends AppCompatActivity implements View.OnCli
         progressBar = (LinearLayout) findViewById(R.id.progressBar);
         show_progress(false);
         phoneEt = (TextInputEditText) findViewById(R.id.phoneEt);
-        phoneEt.setText("7007702307");
+        //phoneEt.setText("7007702307");
         submitBtn.setOnClickListener(this);
     }
 
